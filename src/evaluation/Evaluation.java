@@ -7,6 +7,8 @@ import component.User;
 
 public class Evaluation {
 
+	public static final int k2 = 0;
+	public static final int k3 = 0;
 	private static int time;
 	private static int userNumber;
 	private static int cacheCapacity;
@@ -42,6 +44,7 @@ public class Evaluation {
 			datastoreNumber = 100;
 			
 			network = new Network(userNumber, cacheCapacity, ramCapacity, ramNumber, datastoreCapacity, datastoreNumber);
+			
 		}
 	}
 

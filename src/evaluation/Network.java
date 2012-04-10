@@ -30,7 +30,9 @@ public class Network {
 
 	private Cache cache;
 	private ArrayList<RAM> rams;
+	private int [] ramsorder;
 	private ArrayList<DataStore> datastores;
+	private int [] storesorder;
 
 	public Network(int userNumber, int cacheCapacity, int ramCapacity,
 			int ramNumber, int datastoreCapacity, int datastoreNumber) {
@@ -42,7 +44,28 @@ public class Network {
 		initiateCache(cacheCapacity);
 		initiateRAMs(ramCapacity, ramNumber);
 		initiateDataStores(datastoreCapacity, datastoreNumber);
+		
+		initiateUserInformation();
+	}
 
+	private void initiateUserInformation() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<users.size();i++){
+			rams.get(ramsorder[0]).addUser(users.get(i).getMainkey(), rams);
+			datastores.get(storesorder[0]).addUser(users.get(i).getMainkey(), datastores);
+		}
+		
+		for(int i=0;i<users.size();i++){
+			User user = users.get(i);
+			for(int j=0;j<user.getFollowers().size();j++){
+				User follower = users.get(user.getFollowers().get(j));
+				int ramindex = follower.getRams().get(0);
+				rams.get(ramindex).addRelation(user, rams.get(user.getRams().get(0)), users);
+				
+				int storeindex = users.get(users.get(i).getFollowers().get(j)).getDatastores().get(0);
+				datastores.get(storeindex).addRelation(user, datastores.get(user.getDatastores().get(0)), users);
+			}
+		}
 	}
 
 	private void initiateDataStores(int datastoreCapacity, int datastoreNumber) {
@@ -50,6 +73,8 @@ public class Network {
 		for (int datastoreorder = 0; datastoreorder < datastoreNumber; datastoreorder++) {
 			datastores.add(new DataStore(datastoreCapacity));
 		}
+		
+		storesorder = new int [datastoreNumber];
 	}
 
 	private void initiateRAMs(int ramCapacity, int ramNumber) {
@@ -57,6 +82,7 @@ public class Network {
 		for (int ramorder = 0; ramorder < ramNumber; ramorder++) {
 			rams.add(new RAM(ramCapacity));
 		}
+		ramsorder = new int [ramNumber];
 	}
 
 	private void initiateCache(int cacheCapacity) {
