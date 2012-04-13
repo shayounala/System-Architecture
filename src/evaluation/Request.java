@@ -3,14 +3,37 @@ package evaluation;
 public class Request {
 
 	private int user;
-	private int mainkey;
-	private int starttime;
-	private int style;
+	public int getUser() {
+		return user;
+	}
 
-	public Request(int user, int mainkey, int starttime, int style){
+
+	public int getStyle() {
+		return style;
+	}
+
+	private int style;
+	private int messagetime;
+	public int getMessagetime() {
+		return messagetime;
+	}
+
+	public int getUser2() {
+		return user2;
+	}
+
+	private int user2;
+
+	public Request(int user, int style){
 		this.user = user;
-		this.mainkey = mainkey;
-		this.starttime = starttime;
+		this.style = style;
+	}
+
+
+	public Request(int user, int user2, int style) {
+		// TODO Auto-generated constructor stub
+		this.user = user;
+		this.user2 = user2;
 		this.style = style;
 	}
 }

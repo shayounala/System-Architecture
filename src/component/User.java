@@ -24,21 +24,11 @@ public class User {
 	public ArrayList<Integer> getRams() {
 		return rams;
 	}
-	private ArrayList<ArrayList<Integer>> ramfollowers;
-
-	public ArrayList<ArrayList<Integer>> getRamfollowers() {
-		return ramfollowers;
-	}
 
 	private ArrayList<Integer> datastores;
 
 	public ArrayList<Integer> getDatastores() {
 		return datastores;
-	}
-	private ArrayList<ArrayList<Integer>> storefollowers;
-
-	public ArrayList<ArrayList<Integer>> getStorefollowers() {
-		return storefollowers;
 	}
 
 	public User(int mainkey, ArrayList<Integer> followers, ArrayList<Integer> friends){
@@ -47,7 +37,5 @@ public class User {
 		this.friends = friends;
 		rams = new ArrayList<Integer>();
 		datastores = new ArrayList<Integer>();
-		ramfollowers = new ArrayList<ArrayList<Integer>>();
-		storefollowers = new ArrayList<ArrayList<Integer>>();
 	}
 }
